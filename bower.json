@@ -1,0 +1,13 @@
+{
+  "name": "angular-fileupload",
+  "description": "An AngularJS wrapper for the Wistia upload API",
+  "version": "0.0.0",
+  "homepage": "https://github.com/rkimathi/angular/angular-fileupload",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "angular": "~1.7.2",
+    "angular-mocks": "~1.7.2",
+    "bootstrap": "3.3.7"
+  }
+}
