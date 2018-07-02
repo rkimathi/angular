@@ -1,25 +1,26 @@
 /* app css stylesheet */
 
-.menu {
-  list-style: none;
-  border-bottom: 0.1em solid black;
-  margin-bottom: 2em;
-  padding: 0 0 0.5em;
+html, body, .container, .row {
+  min-height: 100vh;
 }
 
-.menu:before {
-  content: "[";
+.center-xy {
+  display: flex;
+  flex-direction: row;
 }
 
-.menu:after {
-  content: "]";
+.center-xy > [class^="col-"], .center-xy > [class*=" col-"] {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.menu > li {
-  display: inline;
+.center-x {
+  display: flex;
+  justify-content: center;
 }
 
-.menu > li + li:before {
-  content: "|";
-  padding-right: 0.3em;
+.wide {
+  width: 75%
 }
