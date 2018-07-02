@@ -19,6 +19,7 @@ angular.
         maxFileSize: 10000000,
         minFileSize: 1000000
       })
+      // Progress bar
       .on('fileuploadprogress', function(e, data) {
         var progress = parseInt(data.loaded / data.total * 100, 10);
 
@@ -26,21 +27,21 @@ angular.
           'width', progress + '%'
         );
       })
+      // Success handler
       .on('fileuploaddone', function(e, data) {
-        if (data.textStatus === 'success') {
-          self.fileId = data.result.hashed_id;
-          $scope.$apply();
-          console.log(data.result.hashed_id);
-        }
-        else {
-          self.status = data.textStatus;
-          $scope.$apply();
-          console.log(data.jqXHR.responseJSON.error);
-        }
+        self.status = data.textStatus;
+        self.fileId = data.result.hashed_id;
+        var baseUrl = 'https://fast.wistia.com/embed/medias/';
+        self.scriptSrc = baseUrl + self.fileId + '.jsonp';
+        self.imgSrc = baseUrl + self.fileId + '/swatch';
+        self.message = data.result.name + ' uploaded successfully';
+        $scope.$apply();
       })
+      // Error handler
       .on('fileuploadfail', function(e, data) {
-        var file = data.files[data.index];
-        console.log(data);
+        self.status = data.textStatus;
+        self.message = data.jqXHR.responseJSON.error;
+        $scope.$apply();
       });
     }]
   });

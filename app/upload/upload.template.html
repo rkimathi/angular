@@ -1,8 +1,17 @@
-<div class="alert alert-danger alert-dismissible" role="alert" ng-if="$ctrl.status === 'error'">
+<!-- Bootstrap alert for successful uploads -->
+<div class="alert alert-success alert-dismissible fade in" role="alert" data-ng-if="$ctrl.status === 'success'">
   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
     <span aria-hidden="true">&times;</span>
   </button>
-  <span></span>
+  <span>{{$ctrl.message}}</span>
+</div>
+
+<!-- Bootstrap alert for failed uploads -->
+<div class="alert alert-danger alert-dismissible fade in" role="alert" data-ng-if="$ctrl.status === 'error'">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  <span>{{$ctrl.message}}</span>
 </div>
 
 <!-- The file upload form is used as a target for the file upload widget -->
@@ -25,14 +34,16 @@
   <div class="progress-bar progress-bar-success" style="width: 0%;"></div>
 </div>
 
-<!-- The embedded Wistia video, with dynamic file id -->
-<script data-ng-src="{{'https://fast.wistia.com/embed/medias/' + $ctrl.fileId + '.jsonp'}}" async></script>
+<hr>
+
+<!-- The embedded Wistia video -->
+<script data-ng-src="{{scriptSrc | trusted}}" async></script>
 <script src="https://fast.wistia.com/assets/external/E-v1.js" async></script>
 <div class="wistia_responsive_padding" style="padding: 56.25% 0 0 0; position: relative;">
 	<div class="wistia_responsive_wrapper" style="height: 100%; left: 0; position: absolute; top: 0; width: 100%;">
 		<div class="wistia_embed wistia_async_{{$ctrl.fileId}} videoFoam=true" style="height: 100%; position: relative; width: 100%">
 			<div class="wistia_swatch" style="height: 100%; left: 0; opacity: 0; overflow: hidden; position: absolute; top: 0; transition: opacity 200ms; width: 100%;">
-				<img data-ng-src="{{'https://fast.wistia.com/embed/medias/' + $ctrl.fileId + '/swatch'}}" style="filter: blur(5px); height: 100%; object-fit: contain; width: 100%;" alt="" onload="this.parentNode.style.opacity=1;" />
+				<img data-ng-src="{{imgSrc | trusted}}" style="filter: blur(5px); height: 100%; object-fit: contain; width: 100%;" alt="" onload="this.parentNode.style.opacity=1;" />
 			</div>
     </div>
 	</div>
