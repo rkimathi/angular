@@ -24,3 +24,52 @@ html, body, .container, .row {
 .wide {
   width: 60%
 }
+
+hr {
+  border-color: #337ab7;
+}
+
+.placeholder {
+  background-color: #f0f0f0;
+}
+
+.placeholder-icon {
+  color: #e1e1e1;
+}
+
+.padding {
+  padding: 56.25% 0 0 0;
+  position: relative;
+}
+
+.wrapper {
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.embed {
+  height: 100%;
+  position: relative;
+  width: 100%;
+}
+
+.swatch {
+  height: 100%;
+  left: 0;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  transition: opacity 200ms;
+  width: 100%;
+}
+
+.wistia_img {
+  filter: blur(5px);
+  height: 100%;
+  object-fit: contain;
+  width: 100%;
+}

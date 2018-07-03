@@ -11,7 +11,7 @@ describe('upload', function() {
     var ctrl = $componentController('upload');
     var fu = $('#fileupload').fileupload();
   
-    expect(fu).toBe(fu.data('blueimp-fileupload') || fu.data('fileupload'));
+    expect(fu).toBeDefined();
   }));
   
 });

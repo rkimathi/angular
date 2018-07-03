@@ -1,5 +1,6 @@
 <!-- Bootstrap alert for successful uploads -->
-<div class="alert alert-success alert-dismissible fade in" role="alert" data-ng-if="$ctrl.status === 'success'">
+<div class="alert alert-success alert-dismissible fade in" role="alert" 
+  data-ng-show="$ctrl.status === 'success'">
   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
     <span aria-hidden="true">&times;</span>
   </button>
@@ -7,7 +8,8 @@
 </div>
 
 <!-- Bootstrap alert for failed uploads -->
-<div class="alert alert-danger alert-dismissible fade in" role="alert" data-ng-if="$ctrl.status === 'error'">
+<div class="alert alert-danger alert-dismissible fade in" role="alert" 
+  data-ng-show="$ctrl.status === 'error'">
   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
     <span aria-hidden="true">&times;</span>
   </button>
@@ -18,33 +20,43 @@
 <form id="fileupload" action="" method="POST" enctype="multipart/form-data" class="center-x">
   <div class="form-group">
     <div class="text-center">
-      <label>Select a file:</label>
+      <label>Select a video file (between 5MB and 25MB):</label>
+      <br>
+      <!-- The fileinput-button span is used to style the file input field as a button -->
+      <span class="btn btn-primary fileinput-button">
+        <i class="fas fa-cloud-upload-alt"></i>
+        <span>Upload</span>
+        <input type="file" name="file" class="form-control">
+      </span>
     </div>
-    <!-- The fileinput-button span is used to style the file input field as a button -->
-    <span class="btn btn-primary fileinput-button">
-      <i class="glyphicon glyphicon-upload"></i>
-      <span>Upload</span>
-      <input type="file" name="file" class="form-control">
-    </span>
   </div>
 </form>
 
 <!-- The progress bar -->
 <div class="progress">
-  <div class="progress-bar progress-bar-success" style="width: 0%;"></div>
+  <div class="progress-bar progress-bar-primary" style="width: 0%;"></div>
 </div>
 
 <hr>
 
+<div data-ng-show="$ctrl.fileId === null">
+  <div class="placeholder text-center">
+    <i class="fas fa-video fa-10x placeholder-icon"></i>
+  </div>
+</div>
+
 <!-- The embedded Wistia video -->
-<script data-ng-src="{{scriptSrc | trusted}}" async></script>
-<script src="https://fast.wistia.com/assets/external/E-v1.js" async></script>
-<div class="wistia_responsive_padding" style="padding: 56.25% 0 0 0; position: relative;">
-	<div class="wistia_responsive_wrapper" style="height: 100%; left: 0; position: absolute; top: 0; width: 100%;">
-		<div class="wistia_embed wistia_async_{{$ctrl.fileId}} videoFoam=true" style="height: 100%; position: relative; width: 100%">
-			<div class="wistia_swatch" style="height: 100%; left: 0; opacity: 0; overflow: hidden; position: absolute; top: 0; transition: opacity 200ms; width: 100%;">
-				<img data-ng-src="{{imgSrc | trusted}}" style="filter: blur(5px); height: 100%; object-fit: contain; width: 100%;" alt="" onload="this.parentNode.style.opacity=1;" />
-			</div>
+<div data-ng-show="$ctrl.fileId !== null">
+  <script data-ng-src="{{scriptSrc | trusted}}" async></script>
+  <script src="https://fast.wistia.com/assets/external/E-v1.js" async></script>
+  <div class="wistia_responsive_padding padding">
+    <div class="wistia_responsive_wrapper wrapper">
+      <div class="wistia_embed wistia_async_{{$ctrl.fileId}} videoFoam=true embed">
+        <div class="wistia_swatch swatch">
+          <img data-ng-src="{{imgSrc | trusted}}" class="wistia_img" alt="" 
+            onload="this.parentNode.style.opacity=1;" />
+        </div>
+      </div>
     </div>
-	</div>
+  </div>
 </div>

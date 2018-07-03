@@ -7,8 +7,9 @@ angular.
     templateUrl: 'upload/upload.template.html',
     controller: ['$scope', function UploadController($scope) {
       var url = 'https://upload.wistia.com';
-      var api_password = '74e299619401096cf1850df06714b006a00026d60c99aa900abd3e16359eecf1';
+      var api_password = 'd63337593d72edb51c80aa4e8c7a6b7d2bcf8a694546d9ce24004c29c65ff3a8';
       var self = this;
+      self.fileId = null;
 
       // Initialize the jQuery File Upload widget:
       $('#fileupload').fileupload({
@@ -16,8 +17,8 @@ angular.
         formData: {api_password: api_password},
         dataType: 'json',
         acceptFileTypes: /^video\/.*$/,
-        maxFileSize: 10000000,
-        minFileSize: 1000000
+        maxFileSize: 25000000,
+        minFileSize: 5000000
       })
       // Progress bar
       .on('fileuploadprogress', function(e, data) {
@@ -41,6 +42,12 @@ angular.
       .on('fileuploadfail', function(e, data) {
         self.status = data.textStatus;
         self.message = data.jqXHR.responseJSON.error;
+        $scope.$apply();
+      })
+      // Catch validation errors
+      .on('fileuploadprocessfail', function(e, data) {
+        self.status = 'error';
+        self.message = data.files[data.index].error;
         $scope.$apply();
       });
     }]
