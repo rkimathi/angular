@@ -1,9 +1,12 @@
-# `angular-fileupload` — an AngularJS wrapper for the Wistia upload API
+# `angular-fileupload` — an AngularJS wrapper for the jQuery File Upload Plugin
 
-This project lets users upload video to a Wistia account using the Blueimp File Upload plugin and Wistia upload API.
+This project lets users upload video to a Wistia account using Blueimp's jQuery File Upload plugin and the Wistia upload API.
 
-Here’s the Blueimp plugin:
+Demo:
+https://angular-fileupload-wistia.firebaseapp.com/
+
+jQuery File Upload plugin:
 https://github.com/blueimp/jQuery-File-Upload
 
-Here’s a link to the Wistia Upload API:
+Wistia Upload API:
 http://wistia.com/doc/upload-api
